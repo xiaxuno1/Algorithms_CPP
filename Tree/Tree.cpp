@@ -23,6 +23,7 @@ Opreator
 
 #include <iostream>
 #include "SqBitree.h"
+#include "linkTree.h"
 
 void testSqBiTree() {
     Status i;
@@ -38,12 +39,23 @@ void testSqBiTree() {
         printf("树空，无根\n");
     e = 10;
     printf("结点%d的双亲为%d,左右孩子分别为 %d %d", e, parent(T, e),lChild(T,e),rChild(T,e));
+}
+
+void testlinkTree() {
+    int i;
+    BiTree T;
+    TElemType e1;
+    init(T);
+
+
+    strAssign(str, "ABDH#K###E##CFI###G#J##");
+
+    createBiT(T);
 
 }
 
-
 int main()
 {
-    testSqBiTree();
+    testlinkTree();
     std::cout << "End!\n";
 }
