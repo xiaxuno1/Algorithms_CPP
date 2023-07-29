@@ -47,11 +47,19 @@ void testlinkTree() {
     TElemType e1;
     init(T);
 
-
-    strAssign(str, "ABDH#K###E##CFI###G#J##");
+    printf("构造空二叉树后,树空否？%d(1:是 0:否) 树的深度=%d\n", isEmpty(T), BiTree(T));
+    strAssign(str, "ABDH#K###E##CFI###G#J##");;
 
     createBiT(T);
-
+    printf("\n前序遍历二叉树:");
+    preOderTraverse(T);
+    printf("\n中序遍历二叉树:");
+    inOrderTraverse(T);
+    printf("\n后序遍历二叉树:");
+    postOrderTraverse(T);
+    printf("\n层序遍历二叉树:");
+    leverOrderTraverse(T);
+    std::cout << "树的深度为:" << BiTreeDepth(T)<<" ";
 }
 
 int main()

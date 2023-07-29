@@ -43,7 +43,7 @@ Status init(BiTree& T) {
 	return 1;
 }
 
-//createBiT() //创造一个二叉树
+//createBiT() //创造一个二叉树 按照前序遍历顺序存储
 void createBiT(BiTree& T) {
 	TElemtype ch;
 	ch = str[treeIndex++]; 
@@ -85,25 +85,54 @@ void destroyBiT(BiTree T) {
 		T = NULL;
 	}
 }
+#define clearBiT destroyBiT
 
 //isEmpty()  //是否为空
 Status isEmpty(BiTree T){
 	if (T)
 	{
-		return true;
+		return false;
 	}
 	else
 	{
-		return false;
+		return true;
 	}
 }
 
 //assign()  //赋值
 
 
-//depthBiT()  //返回树的深度
+//depthBiT()  
+//返回树的深度，高度，层数，从根结点到最远结点的距离
+//从根结点出发，递归到左孩子尽头返回递归右孩子，记录距离
+int BiTreeDepth(BiTree T)
+{
+	int i, j;
+	if (!T)
+		return 0; //空二叉树
+	if (T->lchild)
+		i = BiTreeDepth(T->lchild);
+	else
+		i = 0;
+	if (T->rchild)
+		j = BiTreeDepth(T->rchild);
+	else
+		j = 0;
+	return i > j ? i + 1 : j + 1;
+}
 //rootBiT() //树的根结点
+TElemType rootBiT(BiTree T) {
+	if (isEmpty(T))
+	{
+		return NBiT;
+
+	}
+	return T->data;
+}
+
 //parent() //父结点
+
+
 //lChild() //左孩子
 //rChild() //右孩子
 //preOderTraverse() //前序遍历
@@ -136,17 +165,20 @@ void postOrderTraverse(BiTree T) {
 //leverOrderTraverse() //层序遍历
 void leverOrderTraverse(BiTree T) {
 	Queue<BiTree> Q;//初始化队列
+	BiTree temp; //存储出队的节点，以便访问左右孩子结点
 	Q.push(T);//根结点入队
 	while (!Q.isEmpty()) //不为空
 	{
-		Q.pop(); //出队
-		if (T->lchild !=NULL)
+		temp = Q.pop();
+		std::cout<< temp->data<<" "; //出队
+
+		if (temp->lchild !=NULL)
 		{
-			Q.push(T->lchild);
+			Q.push(temp->lchild);
 		}
-		if (T->rchild !=NULL)
+		if (temp->rchild !=NULL)
 		{
-			Q.push(T->rchild);//左右子树不为空时入队
+ 			Q.push(temp->rchild);//左右子树不为空时入队
 		}
 	}
 }

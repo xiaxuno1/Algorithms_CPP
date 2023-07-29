@@ -23,7 +23,7 @@ private:
 public:
     Queue();
     void push(const T& item);
-    void pop();
+    T pop();
     T top();
     size_t length();
     bool isEmpty();
@@ -54,14 +54,16 @@ void Queue<T>::push(const T& item) {
  Removes an item from the top of the queue
 */
 template<class T>
-void Queue<T>::pop() {
+T Queue<T>::pop() {
     Node<T>* temp = head;
+    T value = temp->get_value();
     head = temp->get_next();
     temp->set_next(nullptr);
     if (!head)
         tail = nullptr;
     delete temp;
     --size;
+    return value;
 }
 
 /*
