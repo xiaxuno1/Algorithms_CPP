@@ -157,9 +157,9 @@ void inOrderTraverse(BiTree T) {
 void postOrderTraverse(BiTree T) {
 	if (T == NULL)
 		return;
-	postOrderTraverse(T->lchild);
-	postOrderTraverse(T->rchild);
-	visitT(T);
+	postOrderTraverse(T->lchild); //×ó
+	postOrderTraverse(T->rchild); //ÓÒ
+	visitT(T); //¸ù
 }
 
 //leverOrderTraverse() //²ãĞò±éÀú

@@ -24,6 +24,7 @@ Opreator
 #include <iostream>
 #include "SqBitree.h"
 #include "linkTree.h"
+#include"ThreadBinTree.h"
 
 void testSqBiTree() {
     Status i;
@@ -62,8 +63,24 @@ void testlinkTree() {
     std::cout << "树的深度为:" << BiTreeDepth(T)<<" ";
 }
 
+void testThrBinTree() {
+    std::cout << "\n--------------------\n";
+    ThrBinTree H, T;
+    strAssign(str, "ABDH#K###E##CFI###G#J##");
+    treeIndex = 1; //此为全局变量，必须复位
+    createTheBit(T);
+    pre = NULL;//初始化化pre
+    H = preDriveInOrder(T);
+    std::cout<<"\n" << goal_data << "前驱为：" << pre->data << " ";
+    std::cout << "\n";
+    pre = NULL;//全局变量复位
+    std::cout << "中序线索化:" << "\n";
+    ThrInOrder(T);//中序线索化
+
+}
 int main()
-{
+{   
     testlinkTree();
+    testThrBinTree();
     std::cout << "End!\n";
 }
