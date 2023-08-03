@@ -76,7 +76,6 @@ void testThrBinTree() {
     pre = NULL;//全局变量复位
     std::cout << "中序线索化:" << "\n";
     ThrInOrder(T);//中序线索化
-
 }
 int main()
 {   
