@@ -93,10 +93,109 @@ void ThrInOrder(ThrBinTree T) {
 		pre->RTag = Thread;
 	}
 	//随着遍历位置移动前驱结点
-	pre = T;
+	pre = T;  //没有完成中序遍历中最后一个结点的的后继指向空
 	ThrInOrder(T->rchild);
 }
 
 //前序线索化
 
 //后续线索化
+void ThrPostOrder(ThrBinTree T) {
+	if (T == NULL)
+	{
+		return;
+	}
+	ThrInOrder(T->lchild);
+	ThrInOrder(T->rchild);
+	visitT(T);
+	//线索化,左空子树指向前驱，有空子树指向后继；头无前驱，尾无后继(指向为空即可，不用判断)
+	//结点的前驱
+	if (T->lchild == NULL)
+	{
+		T->lchild = pre;
+		T->LTag = Thread;  //线索化标记
+	}
+	//建立结点前驱的后继线索
+	if (pre != NULL && pre->rchild == NULL)
+	{
+		pre->rchild = T;
+		pre->RTag = Thread;
+	}
+	//随着遍历位置移动前驱结点
+	pre = T;  //没有完成中序遍历中最后一个结点的的后继指向空
+}
+
+
+
+//找中序线索二叉树的中序前驱
+//左子树的最右下结点
+ThrBinTree lastRNode(ThrBinTree p) {
+	//左子树的最右子树
+	while (p->RTag==0)
+		p = p->rchild;
+	return p;
+}
+
+ThrBinTree preNode(ThrBinTree p) {
+	//返回前驱
+	if (p->LTag == 1)  //已经线索化直接返回
+		return p->lchild;
+	return lastRNode(p->lchild);
+}
+
+//基于上面引申，对线索二叉树进行逆向中序遍历(右根左)，从最右出发，通过前驱遍历
+void reInOrder(ThrBinTree T) {
+	for (ThrBinTree p = lastRNode(T); p != NULL; p = preNode(p))
+		visitT(p);
+}
+
+//找中序线索二叉树的中序后继
+//右子树的最左下结点
+ThrBinTree lastLNode(ThrBinTree p) {
+	//p右子树的最左下结点
+	while (p->LTag == 0)
+		p = p->lchild;
+	return p;
+}
+
+ThrBinTree postNode(ThrBinTree p) {
+	//找后继（右子树或者线索）
+	if (p->RTag == 1) //已线索化
+		return p->rchild;
+	lastLNode(p->rchild);
+}
+
+//进行遍历从最左出发，通过后继遍历
+void rePostInOrder(ThrBinTree T) {
+	for (ThrBinTree p = lastLNode(T); p != NULL; p = postNode(p))
+		visitT(p);
+}
+
+//后序遍历线索化的前驱
+//右子树或者左子树
+ThrBinTree lastPNode(ThrBinTree p) {
+	if (p->rchild ==NULL)
+	{
+		return p->lchild;  //右子树为空，返回左子树
+	}
+	else
+	{
+		return p->rchild;
+	}
+}
+
+ThrBinTree prePNode(ThrBinTree p) {
+	if (p->LTag == 1)
+	{
+		return p->rchild;
+	}
+	return lastPNode(p);
+}
+
+//后序线索二叉树逆序遍历,根节点的左子树出发，不断找前驱；只能找根右子树的逆序
+void postOrderTarverse(ThrBinTree T) {
+	for (ThrBinTree p = T; p !=NULL; p = prePNode(p))
+	{
+		visitT(p);
+	}
+}

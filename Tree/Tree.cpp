@@ -25,6 +25,7 @@ Opreator
 #include "SqBitree.h"
 #include "linkTree.h"
 #include"ThreadBinTree.h"
+#include"BST.h"
 
 void testSqBiTree() {
     Status i;
@@ -76,10 +77,23 @@ void testThrBinTree() {
     pre = NULL;//全局变量复位
     std::cout << "中序线索化:" << "\n";
     ThrInOrder(T);//中序线索化
+    //逆中序遍历
+    std::cout << "\n逆中序遍历，验证中序线索化前驱查找:" << "\n";
+    reInOrder(T);
+    std::cout << "\n后序遍历，验证中序线索化后继查找:" << "\n";
+    //rePostInOrder(T); //由于中序遍历的最后一个节点的右指针没有指向为空因此会出错
+    postOrderTarverse(T);
+}
+
+void testBST() {
+    BSTree T = NULL,temp = NULL;
+    Elemtype str[] = {50, 66, 60, 26, 21, 30, 70, 68};
+    createBST(T, str, 8);
+    temp = BSTSearchRecur(T, str[5]);
+    std::cout <<"查找的内容为：" << temp->data << " \n";
 }
 int main()
 {   
-    testlinkTree();
-    testThrBinTree();
+    testBST();
     std::cout << "End!\n";
 }
