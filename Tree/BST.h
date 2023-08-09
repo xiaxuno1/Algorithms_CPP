@@ -70,4 +70,3 @@ void createBST(BSTree& T, Elemtype str[], int n) {
 		i++;
 	}
 }
-
