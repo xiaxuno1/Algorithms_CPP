@@ -52,7 +52,7 @@ void BFS(MGraph& G, int v) {
 		temp = Q; //临时存储Q
 		Q.pop();
 		//顶点的剩下的所有边
-		for ( ElemType w = FristNeighbor(G,v); w >=0 ; NextNeighbor(w))
+		for ( ElemType w = FristNeighbor(G,v); w >=0 ; NextNeighbor(G,v,w))
 		{
 			if (visited[w] == false)
 			{
