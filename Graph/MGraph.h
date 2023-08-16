@@ -11,3 +11,4 @@ typedef struct MGraph {
 	int vernum, arcnum; //定义顶点、边/弧的数值
 	int edge[MAX_GRAPH_VERTEX][MAX_GRAPH_VERTEX]; //定义邻接矩阵关系表
 }MGraph;
+
