@@ -19,8 +19,15 @@ endADT
 */
 
 #include <iostream>
+#include "KMP.h"
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    const string T = "google";  //定义字符串常量
+    string S = "googloglooggooglegoogoo";
+    //一维数组声明时，长度必须为常量，不能在运行时确定，因此报错
+    //int next_[T.size()];
+    int index = index_KMP(S, T);
+    cout << "匹配到的索引为：" << index<<endl;
+
 }

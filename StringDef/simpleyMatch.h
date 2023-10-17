@@ -29,7 +29,7 @@ Status simplyMatch(SString S, SString T, int pos) {
 		}
 		else //不匹配，i退回匹配开始位置的下一位置，j退回起点
 		{
-			j = 1;
+			j = 1;  //待匹配串的位置
 			i = i-j+2
 		}
 	}
